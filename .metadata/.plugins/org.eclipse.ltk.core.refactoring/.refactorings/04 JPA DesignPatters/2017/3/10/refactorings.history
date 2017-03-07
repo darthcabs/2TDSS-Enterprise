@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private void save() throws CommitException &apos; from &apos;br.com.fiap.dao.impl.GenericDAOImpl.insert()&apos; to &apos;br.com.fiap.dao.impl.GenericDAOImpl&apos;&#x0A;- Original project: &apos;04 JPA DesignPatters&apos;&#x0A;- Method name: &apos;save&apos;&#x0A;- Destination type: &apos;br.com.fiap.dao.impl.GenericDAOImpl&apos;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;save&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;br.com.fiap.dao.impl{GenericDAOImpl.java" name="save" replace="false" selection="610 265" stamp="1488848147286" version="1.0" visibility="2"/>
+</session>
