@@ -2,6 +2,7 @@ package br.com.fiap.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,32 +16,32 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="TB_PROJETO_AM")
-@SequenceGenerator(name="seqProjetoAm", sequenceName="SQ_TB_PROJETO_AM", allocationSize=1)
+@Table(name = "TB_PROJETO_AM")
+@SequenceGenerator(name = "seqProjetoAm", sequenceName = "SQ_TB_PROJETO_AM", allocationSize = 1)
 public class ProjetoAm {
-	
+
 	@Id
-	@Column(name="cd_projeto")
-	@GeneratedValue(generator="seqProjetoAm", strategy=GenerationType.SEQUENCE)
+	@Column(name = "cd_projeto")
+	@GeneratedValue(generator = "seqProjetoAm", strategy = GenerationType.SEQUENCE)
 	private int codigo;
-	
-	@Column(name="nm_projeto", nullable=false, length=100)
+
+	@Column(name = "nm_projeto", nullable = false, length = 100)
 	private String nome;
-	
-	@Column(name="dt_entrega", nullable=false)
+
+	@Column(name = "dt_entrega", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Calendar dataEntrega;
-	
-	@Column(name="vl_nota", nullable=true)
+
+	@Column(name = "vl_nota", nullable = true)
 	private double nota;
-	
-	@Column(name="ds_observacoes", nullable=true)
+
+	@Column(name = "ds_observacoes", nullable = true)
 	private String observacoes;
-	
-	@OneToOne
-	@JoinColumn(name="FK_PROJETO_GRUPO")
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "FK_PROJETO_GRUPO")
 	private GrupoAm grupo;
-	
+
 	public GrupoAm getGrupo() {
 		return grupo;
 	}

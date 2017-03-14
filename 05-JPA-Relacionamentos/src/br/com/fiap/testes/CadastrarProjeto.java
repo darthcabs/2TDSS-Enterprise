@@ -4,7 +4,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
+import javax.persistence.OneToOne;
 
 import br.com.fiap.dao.impl.GrupoAmDAOImpl;
 import br.com.fiap.dao.impl.ProjetoAmDAOImpl;
@@ -23,11 +25,12 @@ public class CadastrarProjeto {
 		System.out.println("\nCADASTRAR PROJETO");
 		System.out.print("\tNome do projeto: ");
 		String nomeProjeto = sc.next() + sc.nextLine();
-		Calendar dataEntrega = new GregorianCalendar(2017, 11, 20);
+		Calendar dataEntrega = new GregorianCalendar(2017, Calendar.NOVEMBER, 20);
 		System.out.print("\tNota: ");
 		double notaProjeto = sc.nextDouble();
-		System.out.print("\tObservaÃ§Ãµes: ");
+		System.out.print("\tObservações: ");
 		String obsProjeto = sc.next() + sc.nextLine();
+		sc.close();
 
 		GrupoAm grupo = new GrupoAm(0, nomeGrupo);
 		ProjetoAm proj = new ProjetoAm(0, nomeProjeto, dataEntrega, notaProjeto, obsProjeto, grupo);
@@ -36,13 +39,18 @@ public class CadastrarProjeto {
 		ProjetoAmDAOImpl daoP = new ProjetoAmDAOImpl(em);
 		GrupoAmDAOImpl daoG = new GrupoAmDAOImpl(em);
 		
+		//daoG.insert(grupo);
+		// Desnecessário, por causa da linha '@OneToOne(cascade = CascadeType.PERSIST)'
+		// na classe ProjetoAm
+		
+		daoP.insert(proj);
+		
 		try {
-			daoG.insert(grupo);
-			daoG.save();
-			daoP.insert(proj);
 			daoP.save();
 		} catch (CommitException e) {
 			e.printStackTrace();
+		} finally {
+			em.close();
 		}
 		System.exit(0);
 	}
