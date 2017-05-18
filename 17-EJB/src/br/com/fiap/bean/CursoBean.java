@@ -2,27 +2,21 @@ package br.com.fiap.bean;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+
 import br.com.fiap.bo.CursoBO;
 
 @ManagedBean
 public class CursoBean {
+
 	private float nac, am, ps, enade, media;
 	
 	@EJB
 	private CursoBO bo;
 	
-	public void calcular() {
+	public void calcular(){
 		media = bo.calcularMedia(nac, ps, am, enade);
 	}
 
-	public float getMedia() {
-		return media;
-	}
-
-	public void setMedia(float media) {
-		this.media = media;
-	}
-	
 	public float getNac() {
 		return nac;
 	}
@@ -54,4 +48,13 @@ public class CursoBean {
 	public void setEnade(float enade) {
 		this.enade = enade;
 	}
+
+	public float getMedia() {
+		return media;
+	}
+
+	public void setMedia(float media) {
+		this.media = media;
+	}
+	
 }
